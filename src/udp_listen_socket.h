@@ -14,6 +14,7 @@ public:
     ~CudpListenSocket();
     void Initialization(uint16_t port, const char * target_ip);
     int receive();
+    int sendMessage(const char * msg);
 
 public:
     int sock;

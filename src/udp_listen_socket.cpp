@@ -11,7 +11,6 @@ CudpListenSocket::CudpListenSocket() {
 }
 
 CudpListenSocket::~CudpListenSocket() {
-    close(sock);
 }
 
 void CudpListenSocket::Initialization(uint16_t port, const char * target_ip) {
@@ -27,4 +26,10 @@ int CudpListenSocket::receive() {
     int retval;
     retval = recvfrom(sock, buf, BUFSIZE, 0, (sockaddr *)&peeraddr, (socklen_t *)addrlen);
     return retval;
+
+}
+
+int CudpListenSocket::sendMessage(const char* msg) {
+    int send;
+    send = sendto(sock, msg, strlen(msg), 0, (struct sockaddr*)&serveraddr, sizeof(serveraddr));
 }
